@@ -1,8 +1,16 @@
+package entities.moving;
+
+import entities.GameObject;
+import entities.ID;
+import entities.graphics.SpriteSheet;
+import gameStates.Game;
+import entities.graphics.Animation;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-public class Enemy extends GameObject{
+public class Enemy extends GameObject {
 
     private final Handler handler;
     Random r = new Random();
@@ -33,8 +41,8 @@ public class Enemy extends GameObject{
 
         choose = r.nextInt(15);
 
-        for (int i = 0; i < handler.object.size(); i++) {
-            GameObject tempObject = handler.object.get(i);
+        for (int i = 0; i < handler.getObject().size(); i++) {
+            GameObject tempObject = handler.getObject().get(i);
 
             if (tempObject.getId() == ID.Block) {
                 if (getBoundsBig().intersects(tempObject.getBounds())) {
@@ -85,9 +93,9 @@ public class Enemy extends GameObject{
 
             if (tempObject.getId() == ID.Player) {
                 if (chasePlayer().intersects(tempObject.getBounds())) {
-                    if (tempObject.x > x) x += 2;
+                    if (tempObject.getX() > x) x += 2;
                     else x -= 2;
-                    if (tempObject.y > y) y += 2;
+                    if (tempObject.getY() > y) y += 2;
                     else y -= 2;
                     velX = 1;
                     velY = 1;

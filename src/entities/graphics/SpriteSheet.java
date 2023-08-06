@@ -1,3 +1,5 @@
+package entities.graphics;
+
 import java.awt.image.BufferedImage;
 
 public class SpriteSheet {

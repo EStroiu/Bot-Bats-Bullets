@@ -1,3 +1,9 @@
+package gameStates;
+
+import input.MouseInput;
+import entities.moving.Camera;
+import entities.moving.Handler;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -73,17 +79,9 @@ public class Menu extends MouseAdapter {
 
     }
 
-
-
-    public void mouseReleased(MouseEvent e){
-
-    }
-
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height){
         if(mx > x && mx < x + width){
-            if(my > y && my < y + height){
-                return true;
-            }else return false;
+            return my > y && my < y + height;
         }else return false;
     }
 

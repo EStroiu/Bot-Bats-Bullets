@@ -1,10 +1,13 @@
+package entities.moving;
+
+import entities.GameObject;
+
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Handler {
 
-    ArrayList<GameObject> object = new ArrayList<GameObject>();
+    ArrayList<GameObject> object = new ArrayList<>();
 
     private boolean up = false, down = false, right = false, left = false;
 
@@ -43,7 +46,6 @@ public class Handler {
     public void tick(){
         for (int i = 0; i < object.size(); i++) {
             GameObject tempObject = object.get(i);
-
             tempObject.tick();
         }
     }
@@ -62,5 +64,9 @@ public class Handler {
 
     public void removeObject(GameObject tempObject){
         object.remove(tempObject);
+    }
+
+    public ArrayList<GameObject> getObject(){
+        return object;
     }
 }

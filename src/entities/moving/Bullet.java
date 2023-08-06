@@ -1,6 +1,12 @@
+package entities.moving;
+
+import entities.GameObject;
+import entities.ID;
+import entities.graphics.SpriteSheet;
+
 import java.awt.*;
 
-public class Bullet extends GameObject{
+public class Bullet extends GameObject {
 
     private final Handler handler;
 

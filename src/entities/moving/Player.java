@@ -1,14 +1,15 @@
-import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
+package entities.moving;
+
+import entities.GameObject;
+import entities.ID;
+import entities.graphics.SpriteSheet;
+import gameStates.Game;
+import entities.graphics.Animation;
+
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Player extends GameObject {
-
-    private final float _acc = 1f;
-    private final float _dcc = 0.5f;
 
     private final Handler handler;
     Game game;
@@ -80,6 +81,8 @@ public class Player extends GameObject {
         y += velY;
 
         //Vertical Movement
+        float _acc = 1f;
+        float _dcc = 0.5f;
         if(handler.isUp()) velY -= _acc;
         else if(handler.isDown()) velY += _acc;
         else if(!handler.isUp() && !handler.isDown()){
@@ -124,9 +127,9 @@ public class Player extends GameObject {
     }
 
     private void collision(){
-        for (int i = 0; i < handler.object.size(); i++) {
+        for (int i = 0; i < handler.getObject().size(); i++) {
 
-            GameObject tempObject = handler.object.get(i);
+            GameObject tempObject = handler.getObject().get(i);
 
             if(tempObject.getId() == ID.Block){
 
@@ -186,13 +189,13 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
 
-        if(velX>0 && velY == 0 || velX > 0 && velY != 0) {
+        if(velX > 0) {
             running_right.drawAnimation(g, x, y, 0);
         }
-        else if(velX < 0 && velY == 0 || velX < 0 && velY != 0) {
+        else if(velX < 0) {
             running_left.drawAnimation(g, x, y, 0);
         }
-        else if(velX == 0 && velY != 0) {
+        else if(velY != 0) {
             running_up_and_down.drawAnimation(g, x, y, 0);
         }
         else {

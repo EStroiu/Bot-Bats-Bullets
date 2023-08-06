@@ -1,3 +1,7 @@
+package entities;
+
+import entities.graphics.SpriteSheet;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

@@ -1,3 +1,7 @@
+package entities.graphics;
+
+import gameStates.Game;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,3 +1,7 @@
+package entities.moving;
+
+import entities.GameObject;
+
 public class Camera {
 
     private float x,y;
@@ -9,8 +13,8 @@ public class Camera {
 
     public void tick(GameObject object){
 
-        x += ((object.getX() - x) - 1000/2)*0.05f;
-        y += ((object.getY() - y) - 563/2)*0.05f;
+        x += ((object.getX() - x) - (float) 1000 /2)*0.05f;
+        y += ((object.getY() - y) - (float) 563 /2)*0.05f;
 
     }
 
@@ -18,16 +22,9 @@ public class Camera {
         return x;
     }
 
-    public void setX(float x) {
-        this.x = x;
-    }
-
     public float getY() {
         return y;
     }
 
-    public void setY(float y) {
-        this.y = y;
-    }
 
 }

@@ -1,7 +1,11 @@
+package entities;
+
+import entities.graphics.SpriteSheet;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Floor extends GameObject{
+public class Floor extends GameObject {
 
     private final BufferedImage floor_image;
 

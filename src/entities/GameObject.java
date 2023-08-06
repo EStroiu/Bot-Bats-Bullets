@@ -1,3 +1,7 @@
+package entities;
+
+import entities.graphics.SpriteSheet;
+
 import java.awt.*;
 
 public abstract class GameObject {
@@ -31,31 +35,8 @@ public abstract class GameObject {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public float getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public float getVelX() {
-        return velX;
-    }
-
-    public void setVelX(float velX) {
-        this.velX = velX;
-    }
-
-    public float getVelY() {
-        return velY;
-    }
-
-    public void setVelY(float velY) {
-        this.velY = velY;
-    }
 }
