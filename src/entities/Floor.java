@@ -28,6 +28,6 @@ public class Floor extends GameObject {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y,57,57);
+        return new Rectangle((int)x,(int)y,57 * ss.scale,57 * ss.scale);
     }
 }

@@ -24,6 +24,6 @@ public class Crate extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y+10,32,32);
+        return new Rectangle((int)x,(int)y+10,32 * ss.scale,32 * ss.scale);
     }
 }

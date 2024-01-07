@@ -22,6 +22,10 @@ public class Game extends Canvas implements Runnable {
     private final Handler handler;
     public Camera camera;
     public SpriteSheet ss;
+    
+    GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+    int width = gd.getDisplayMode().getWidth(); 
+    int height = gd.getDisplayMode().getHeight();
 
     public static boolean paused = false;
 
@@ -30,6 +34,9 @@ public class Game extends Canvas implements Runnable {
     public int ammo = 100;
     public int hp = 100;
     public int XRes = 1000, YRes = 563;
+
+    public int scale = Math.max(1, width / XRes);
+
     public int enemyNum, score = 0;
     public Font pixelFont;
     private final Menu menu;
@@ -53,10 +60,10 @@ public class Game extends Canvas implements Runnable {
             e.printStackTrace();
         }
 
-        pixelFont = pixelFont.deriveFont(20F);
+        pixelFont = pixelFont.deriveFont(20F * scale);
 
         enemyNum = 1;
-        new Window(XRes, YRes, "Bot Bats Bullets", this);
+        new Window(XRes * scale, YRes * scale, "Bot Bats Bullets", this);
         start();
 
         handler = new Handler();
@@ -144,7 +151,7 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
 
             g.setColor(Color.DARK_GRAY);
-            g.fillRect(0, 0, 1000, 563);
+            g.fillRect(0, 0, XRes * scale, YRes * scale);
 
             g2d.translate(-camera.getX(), -camera.getY());
 
@@ -154,25 +161,25 @@ public class Game extends Canvas implements Runnable {
 
             if (hp > 0)
                 g.setColor(Color.gray);
-            g.fillRect(5, 5, 200, 32);
+            g.fillRect(5 * scale, 5 * scale, 200 * scale, 32 * scale);
             g.setColor(Color.green);
-            g.fillRect(5, 5, hp * 2, 32);
+            g.fillRect(5 * scale, 5 * scale, hp * 2 * scale, 32 * scale);
             g.setColor(Color.white);
-            g.drawRect(5, 5, 200, 32);
+            g.drawRect(5 * scale, 5 * scale, 200 * scale, 32 * scale);
             g.setFont(pixelFont);
             g.setColor(Color.white);
-            g.drawString(String.valueOf(hp), 100, 30);
+            g.drawString(String.valueOf(hp), 100 * scale, 30 * scale);
 
 
             g.setColor(Color.yellow);
-            g.drawString("Ammo: " + ammo, 5, 60);
-            g.drawString("Score: " + score, 880, 25);
+            g.drawString("Ammo: " + ammo, 5 * scale, 60 * scale);
+            g.drawString("Score: " + score, 880 * scale, 25 * scale);
             g.setColor(Color.RED);
-            g.drawString("Enemies left: " + enemyNum, 5, 85);
+            g.drawString("Enemies left: " + enemyNum, 5 * scale, 85 * scale);
 
             if (paused) {
                 g.setColor(Color.white);
-                g.drawString("Paused", 455, 250);
+                g.drawString("Paused", 455 * scale, 250 * scale);
             }
 
         } else if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Help) {
@@ -203,7 +210,7 @@ public class Game extends Canvas implements Runnable {
                         green1 == 255 && blue1 == 0 && red1 == 0 ||
                         blue1 == 255 && green1 == 0 & red1 == 0 ||
                         green1 == 255 && blue1 == 255 && red1 == 0)
-                    handler.addObject(new Floor(xx1 * 57, yy1 * 57, ID.Floor, ss));
+                    handler.addObject(new Floor(xx1 * 57 * scale, yy1 * 57 * scale, ID.Floor, ss));
             }
         }
 
@@ -215,18 +222,18 @@ public class Game extends Canvas implements Runnable {
                 int blue = (pixel) & 0xff;
 
                 if (red == 255 & blue == 0 & green == 0)
-                    handler.addObject(new Block(xx * 57, yy * 57, ID.Block, ss));
+                    handler.addObject(new Block(xx * 57 * scale, yy * 57 * scale, ID.Block, ss));
 
                 if (blue == 255 && green == 0 & red == 0)
-                    handler.addObject(new Player(xx * 57, yy * 57, ID.Player, handler, this, ss));
+                    handler.addObject(new Player(xx * 57 * scale, yy * 57 * scale, ID.Player, handler, this, ss));
 
                 if (green == 255 && blue == 0 && red == 0) {
-                    handler.addObject(new Enemy(xx * 57, yy * 57, ID.Enemy, handler, this, ss));
+                    handler.addObject(new Enemy(xx * 57 * scale, yy * 57 * scale, ID.Enemy, handler, this, ss));
                     enemyNum++;
                 }
 
                 if (green == 255 && blue == 255 && red == 0)
-                    handler.addObject(new Crate(xx * 57, yy * 57, ID.Crate, ss));
+                    handler.addObject(new Crate(xx * 57 * scale, yy * 57 * scale, ID.Crate, ss));
 
 
             }
@@ -258,9 +265,5 @@ public class Game extends Canvas implements Runnable {
         }
         stop();
     }
-
-//    public static void main(String[] args){
-//        new classes.Game();
-//    }
 
 }

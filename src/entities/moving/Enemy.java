@@ -131,30 +131,30 @@ public class Enemy extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y,38,38);
+        return new Rectangle((int)x,(int)y,38 * game.scale,38 * game.scale);
     }
 
     public Rectangle getBoundsUL() {
-        return new Rectangle((int)x-12,(int)y-12,30,30);
+        return new Rectangle((int)x-12,(int)y-12,30 * game.scale,30 * game.scale);
     }
 
     public Rectangle getBoundsUR() {
-        return new Rectangle((int)x+18,(int)y-12,30,30);
+        return new Rectangle((int)x+18,(int)y-12,30 * game.scale,30 * game.scale);
     }
 
     public Rectangle getBoundsLL() {
-        return new Rectangle((int)x-12,(int)y+18,30,30);
+        return new Rectangle((int)x-12,(int)y+18,30 * game.scale,30 * game.scale);
     }
 
     public Rectangle getBoundsLR() {
-        return new Rectangle((int)x+18,(int)y+18,30,30);
+        return new Rectangle((int)x+18,(int)y+18,30 * game.scale,30 * game.scale);
     }
 
     public Rectangle getBoundsBig() {
-        return new Rectangle((int)x-12,(int)y-12,60,60);
+        return new Rectangle((int)x-12,(int)y-12,60 * game.scale,60 * game.scale);
     }
 
     public Rectangle chasePlayer() {
-        return new Rectangle((int)x-180,(int)y-180,400,400);
+        return new Rectangle((int)x-180,(int)y-180,400 * game.scale,400 * game.scale);
     }
 }

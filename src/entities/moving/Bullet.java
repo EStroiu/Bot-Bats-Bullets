@@ -33,10 +33,10 @@ public class Bullet extends GameObject {
 
     public void render(Graphics g) {
         g.setColor(Color.red);
-        g.fillOval((int)x,(int)y,8,8);
+        g.fillOval((int)x,(int)y,8 * ss.scale,8 * ss.scale);
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)x,(int)y,8,8);
+        return new Rectangle((int)x,(int)y,8 * ss.scale,8 * ss.scale);
     }
 }

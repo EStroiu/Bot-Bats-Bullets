@@ -138,12 +138,12 @@ public class Player extends GameObject {
                     if(velX > 0){ //Right
 
                         velX = 0;
-                        x = tempObject.getX() - 36;
+                        x = tempObject.getX() - 36 * game.scale;
 
                     }else if(velX < 0) { //Left
 
                         velX = 0;
-                        x = tempObject.getX() + 57; //Width of the block
+                        x = tempObject.getX() + 57 * game.scale; //Width of the block
 
                     }
 
@@ -154,13 +154,13 @@ public class Player extends GameObject {
                     if(velY > 0){ //Down
 
                         velY = 0;
-                        y = tempObject.getY() - 50;
+                        y = tempObject.getY() - 50 * game.scale;
 
 
                     }else if(velY < 0) { //Up
 
                         velY = 0;
-                        y = tempObject.getY() + 57; //Width of the block
+                        y = tempObject.getY() + 57 * game.scale; //Width of the block
 
                     }
 
@@ -205,15 +205,15 @@ public class Player extends GameObject {
     }
 
     public Rectangle getBoundsNormal(){
-        return new Rectangle((int)x,(int)y,36,50);
+        return new Rectangle((int)x,(int)y,36 * game.scale,50 * game.scale);
     }
 
     public Rectangle getBounds(){
 
         float bx = x + velX;
         float by = y;
-        float bw = 36 + velX/2;
-        float bh = 50;
+        float bw = 36 * game.scale + velX/2;
+        float bh = 50 * game.scale;
 
 
         return new Rectangle((int)bx,(int)by,(int)bw,(int)bh);
@@ -223,8 +223,8 @@ public class Player extends GameObject {
 
         float bx = x;
         float by = y + velY;
-        float bw = 36;
-        float bh = 50 + velY/2;
+        float bw = 36 * game.scale;
+        float bh = 50 * game.scale + velY/2;
 
         return new Rectangle((int)bx,(int)by,(int)bw,(int)bh);
     }
