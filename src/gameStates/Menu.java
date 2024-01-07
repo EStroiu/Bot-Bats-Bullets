@@ -28,10 +28,9 @@ public class Menu extends MouseAdapter {
         if(game.gameState == Game.STATE.Menu) {
 
             // play button
-            if (mouseOver(mx, my, 340, 175, 300, 64)) {
-                game.gameState = Game.STATE.Game;
-
+            if (mouseOver(mx, my, 340 * game.scale, 175 * game.scale, 300 * game.scale, 64 * game.scale)) {
                 game.camera = new Camera(0, 0);
+                game.gameState = Game.STATE.Game;
 
                 game.addMouseListener(new MouseInput(handler, game.camera, game, game.ss));
 
@@ -41,26 +40,26 @@ public class Menu extends MouseAdapter {
             }
 
              //quit button
-            if(mouseOver(mx,my,340,375,300,64)){
+            if(mouseOver(mx,my,340 * game.scale,375 * game.scale,300 * game.scale,64 * game.scale)){
                 System.exit(1);
             }
 
             //help button
-            if(mouseOver(mx,my,340,275,300,64)){
+            if(mouseOver(mx,my,340 * game.scale,275 * game.scale,300 * game.scale,64 * game.scale)){
                 game.gameState = Game.STATE.Help;
             }
 
         }
 
         if(game.gameState == Game.STATE.Help){
-            if(mouseOver(mx,my,335,400,300,64)){
+            if(mouseOver(mx,my,335 * game.scale,400 * game.scale,300 * game.scale,64 * game.scale)){
                 game.gameState = Game.STATE.Menu;
             }
         }
 
         if(game.gameState == Game.STATE.End){
 
-            if (mouseOver(mx, my, 340,275,300,64)) {
+            if (mouseOver(mx, my, 340 * game.scale,275 * game.scale,300 * game.scale,64 * game.scale)) {
 
                 game.gameState = Game.STATE.Game;
 
@@ -72,7 +71,7 @@ public class Menu extends MouseAdapter {
                 game.enemyNum--;
             }
 
-            if(mouseOver(mx,my,340,375,300,64)){
+            if(mouseOver(mx,my,340 * game.scale,375 * game.scale,300 * game.scale,64 * game.scale)){
                 System.exit(1);
             }
         }
@@ -98,79 +97,82 @@ public class Menu extends MouseAdapter {
         }
 
 
-        pixelFont1 = pixelFont1.deriveFont(60F);
+        pixelFont1 = pixelFont1.deriveFont(60F * game.scale);
 
         if(game.gameState == Game.STATE.Menu) {
+            // bg
             g.setColor(Color.DARK_GRAY);
-            g.fillRect(0,0,1000,563);
+            g.fillRect(0,0,game.XRes * game.scale, game.YRes * game.scale);
             g.setColor(Color.white);
-            g.drawRect(340,175,300,64);
-            g.drawRect(340,275,300,64);
-            g.drawRect(340,375,300,64);
+
+
+            g.drawRect(340 * game.scale,175 * game.scale,300 * game.scale,64 * game.scale);
+            g.drawRect(340 * game.scale,275 * game.scale,300 * game.scale,64 * game.scale);
+            g.drawRect(340 * game.scale,375 * game.scale,300* game.scale,64 * game.scale);
 
             g.setFont(pixelFont1);
             g.setColor(Color.white);
-            g.drawString("Menu",420,115);
+            g.drawString("Menu",420 * game.scale, 115 * game.scale);
 
-            pixelFont1 = pixelFont1.deriveFont(35F);
+            pixelFont1 = pixelFont1.deriveFont(35F * game.scale);
 
             g.setFont(pixelFont1);
-            g.drawString("Start",450,220);
-            g.drawString("Help",460,320);
-            g.drawString("Quit",463,420);
+            g.drawString("Start",450 * game.scale, 220 * game.scale);
+            g.drawString("Help",460 * game.scale, 320 * game.scale);
+            g.drawString("Quit",463 * game.scale, 420 * game.scale);
 
         }else if(game.gameState == Game.STATE.Help){
 
             g.setColor(Color.DARK_GRAY);
-            g.fillRect(0,0,1000,563);
+            g.fillRect(0,0,1000 * game.scale, 563 * game.scale);
             g.setColor(Color.white);
 
-            pixelFont1 = pixelFont1.deriveFont(30F);
+            pixelFont1 = pixelFont1.deriveFont(30F * game.scale);
             g.setFont(pixelFont1);
-            g.drawString("Controls:",50,50);
-            g.drawString("W - Up ",50,100);
-            g.drawString("S - Down ",50,150);
-            g.drawString("A - Left ",50,200);
-            g.drawString("D - Right ",50,250);
-            g.drawString("P - Pause ",50,300);
-            g.drawString("Aim with your mouse and shoot with left mouse button ",50,350);
+            g.drawString("Controls:",50 * game.scale,50 * game.scale);
+            g.drawString("W - Up ",50 * game.scale,100 * game.scale);
+            g.drawString("S - Down ",50 * game.scale, 150 * game.scale);
+            g.drawString("A - Left ",50 * game.scale,200 * game.scale);
+            g.drawString("D - Right ",50 * game.scale,250 * game.scale);
+            g.drawString("P - Pause ",50 * game.scale,300 * game.scale);
+            g.drawString("Aim with your mouse and shoot with left mouse button ",50 * game.scale,350 * game.scale);
 
-            pixelFont1 = pixelFont1.deriveFont(35F);
+            pixelFont1 = pixelFont1.deriveFont(35F * game.scale);
             g.setFont(pixelFont1);
             g.setColor(Color.white);
 
-            g.drawRect(340,400,300,64);
-            g.drawString("Back",453,445);
+            g.drawRect(340* game.scale,400 * game.scale,300 * game.scale,64* game.scale);
+            g.drawString("Back",453 * game.scale,445 * game.scale);
 
         } else if(game.gameState == Game.STATE.End) {
 
-            pixelFont1 = pixelFont1.deriveFont(21F);
+            pixelFont1 = pixelFont1.deriveFont(21F * game.scale);
 
             g.setFont(pixelFont1);
             g.setColor(Color.gray);
-            g.fillRect(5, 5, 200, 32);
+            g.fillRect(5 * game.scale, 5 * game.scale, 200 * game.scale, 32* game.scale);
             g.setColor(Color.white);
-            g.drawRect(5, 5, 200, 32);
+            g.drawRect(5 * game.scale, 5 * game.scale, 200 * game.scale, 32 * game.scale);
             g.setColor(Color.white);
-            g.drawString("0", 100, 30);
+            g.drawString("0", 100 * game.scale, 30 * game.scale);
 
 
-            pixelFont1 = pixelFont1.deriveFont(60F);
+            pixelFont1 = pixelFont1.deriveFont(60F * game.scale);
             g.setFont(pixelFont1);
             g.setColor(Color.RED);
-            g.drawString("Game Over",340,150);
+            g.drawString("Game Over",340 * game.scale,150 * game.scale);
 
             g.setColor(Color.white);
-            pixelFont1 = pixelFont1.deriveFont(35F);
+            pixelFont1 = pixelFont1.deriveFont(35F * game.scale);
             g.setFont(pixelFont1);
-            g.drawString("Score: " + game.score,430,220);
+            g.drawString("Score: " + game.score,430 * game.scale,220 * game.scale);
 
 
-            g.drawRect(340,275,300,64);
-            g.drawString("Restart",435,320);
+            g.drawRect(340 * game.scale,275 * game.scale,300 * game.scale,64 * game.scale);
+            g.drawString("Restart",435 * game.scale,320 * game.scale);
 
-            g.drawRect(340,375,300,64);
-            g.drawString("Quit",463,420);
+            g.drawRect(340 * game.scale,375 * game.scale,300 * game.scale,64 * game.scale);
+            g.drawString("Quit",463 * game.scale,420 * game.scale);
 
 
         }
