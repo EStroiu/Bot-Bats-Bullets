@@ -102,20 +102,6 @@ public class Player extends GameObject {
 
         collision();
 
-//          OLD MOVEMENT
-
-//        if(handler.isUp()) velY = -5;
-//        else if(!handler.isDown()) velY = 0;
-//
-//        if(handler.isDown()) velY = 5;
-//        else if(!handler.isUp()) velY = 0;
-//
-//        if(handler.isRight()) velX = 5;
-//        else if(!handler.isLeft()) velX = 0;
-//
-//        if(handler.isLeft()) velX = -5;
-//        else if(!handler.isRight()) velX = 0;
-
         running_right.runAnimation();
         running_left.runAnimation();
         running_up_and_down.runAnimation();
